@@ -1,35 +1,20 @@
-name: CI/CD Pipeline
+name: CI/CD
 
 on:
   push:
-    branches:
-      - main
+    branches: [ "main" ]
   pull_request:
-    branches:
-      - main
+    branches: [ "main" ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
+    env:
+      NEWS_API_KEY: ${{ secrets.NEWS_API_KEY }}
+
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '20'
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Run build
-        run: npm run build
-
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v3
 
       - name: Set up Node.js
@@ -43,3 +28,5 @@ jobs:
       - name: Run tests
         run: npm test
 
+      - name: Run app with NewsAPI
+        run: node src/index.js

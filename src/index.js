@@ -1,15 +1,11 @@
-const { getRandomJoke } = require('./jokes');
+const { getNews } = require('./news');
 
-async function main() {
-  try {
-    const joke = await getRandomJoke();
-    console.log("😂 Aquí tienes un chiste:");
-    console.log(`${joke.setup} ... ${joke.punchline}`);
-  } catch (error) {
-    console.error("❌ Error al obtener el chiste:", error.message);
-  }
-}
+(async () => {
+  const noticia = await getNews();
+  console.log("Última noticia en español:");
+  console.log(noticia);
+})();
 
-main();
+
 
 
