@@ -6,6 +6,6 @@ const { getNews } = require('./news');
   console.log(noticia);
 })();
 
-
+//probando funcionamiento
 
 
