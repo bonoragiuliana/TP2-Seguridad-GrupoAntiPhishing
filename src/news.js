@@ -1,22 +1,27 @@
 const axios = require('axios');
-require('dotenv').config();   // 👈 esto carga las variables de entorno desde .env
+const fs = require('fs');
 
-const API_KEY = process.env.NEWS_API_KEY;  // la clave va en las variables de entorno
 const BASE_URL = 'https://newsapi.org/v2/top-headlines';
+
+// leer siempre la clave activa
+function getActiveKey() {
+  const data = fs.readFileSync("activeKey.json", "utf-8");
+  return JSON.parse(data).apiKey;
+}
 
 async function getNews() {
   try {
+    const API_KEY = getActiveKey(); // usa la clave activa
     const response = await axios.get(BASE_URL, {
       params: {
-        country: 'ar',     // noticias de Argentina
-        language: 'es',    // en español
-        pageSize: 3,       // cantidad de noticias
+        country: 'ar',
+        language: 'es',
+        pageSize: 3,
         apiKey: API_KEY
       }
     });
 
     const articles = response.data.articles;
-
     if (!articles || articles.length === 0) {
       return "No se encontraron noticias en español.";
     }
@@ -29,6 +34,7 @@ async function getNews() {
 }
 
 module.exports = { getNews };
+
 
 
 
