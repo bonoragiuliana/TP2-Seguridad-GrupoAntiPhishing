@@ -1,9 +1,14 @@
 version: "3.9"
 services:
   app:
-    image: node:20
+    build: .
+    ports:
+      - "3000:3000"
     working_dir: /usr/src/app
     volumes:
       - .:/usr/src/app
-    command: tail -f /dev/null
+    command: npm start
+    environment:
+      - NEWS_API_KEY=88321af79092425696964cb199204f11
+
 
