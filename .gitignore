@@ -1,0 +1,11 @@
+# Node.js
+node_modules/
+npm-debug.log
+dist/
+build/
+
+# Archivos de entorno
+.env
+
+# Archivos generados por la rotación de claves
+activeKey.json

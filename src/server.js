@@ -1,4 +1,6 @@
 // src/server.js
+require('dotenv').config(); // 👈 carga variables del .env
+
 const express = require('express');
 const { getNews } = require('./news');
 
@@ -20,5 +22,6 @@ const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`Server escuchando en puerto ${port}`);
 });
+
 
 

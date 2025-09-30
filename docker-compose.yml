@@ -8,7 +8,8 @@ services:
     volumes:
       - .:/usr/src/app
     command: npm start
-    environment:
-      - NEWS_API_KEY=88321af79092425696964cb199204f11
+    env_file:
+      - .env
+
 
 

@@ -1,17 +1,14 @@
 const axios = require('axios');
-const fs = require('fs');
 
 const BASE_URL = 'https://newsapi.org/v2/top-headlines';
 
-// leer siempre la clave activa
-function getActiveKey() {
-  const data = fs.readFileSync("activeKey.json", "utf-8");
-  return JSON.parse(data).apiKey;
-}
-
 async function getNews() {
   try {
-    const API_KEY = getActiveKey(); // usa la clave activa
+    const API_KEY = process.env.NEWS_API_KEY;
+    if (!API_KEY) {
+      throw new Error("Falta NEWS_API_KEY en variables de entorno");
+    }
+
     const response = await axios.get(BASE_URL, {
       params: {
         country: 'ar',

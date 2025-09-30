@@ -1,3 +1,6 @@
+// src/index.js
+require('dotenv').config(); // 👈 carga variables del .env
+
 const { getNews } = require('./news');
 
 (async () => {
@@ -7,6 +10,7 @@ const { getNews } = require('./news');
 })();
 
 console.log("Probando pipeline con clave API...");
+
 
 
 
