@@ -1,5 +1,5 @@
-// src/index.js
-require('dotenv').config(); // 👈 carga variables del .env
+
+require('dotenv').config();
 
 const { getNews } = require('./news');
 

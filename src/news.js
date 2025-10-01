@@ -11,26 +11,33 @@ async function getNews() {
 
     const response = await axios.get(BASE_URL, {
       params: {
-        country: 'ar',
-        language: 'es',
-        pageSize: 3,
+        country: 'ar',       // país
+        language: 'es',      // idioma
+        pageSize: 3,         // cantidad de noticias
         apiKey: API_KEY
       }
     });
 
     const articles = response.data.articles;
+
+    // Si no hay noticias, devolver array vacío
     if (!articles || articles.length === 0) {
-      return "No se encontraron noticias en español.";
+      return [];
     }
 
-    return articles.map((art, index) => `${index + 1}. ${art.title}`).join('\n');
+    // Devolver array directamente con los títulos
+    return articles.map((art, index) => `${index + 1}. ${art.title}`);
+
   } catch (error) {
     console.error("Error al obtener noticias:", error.message);
-    return "No se pudo obtener noticias.";
+    // En caso de error, devolver array vacío para no romper el endpoint
+    return [];
   }
 }
 
 module.exports = { getNews };
+
+
 
 
 
